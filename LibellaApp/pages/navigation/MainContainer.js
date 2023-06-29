@@ -6,39 +6,52 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //Screens
 
-import HomeScreen from './screens/HomeScreen'
+import AgendaScreen from './screens/AgendaScreen'
 import DetailsScreen from './screens/DetailsScreen'
 import SettingsScreen from './screens/SettingsScreen'
 
 //Screen names
 
-const homeName= "Home";
+const agenda= "agenda";
 const detailsName= "Details";
 const settingsName= "Settings";
 
 const Tab = createBottomTabNavigator();
 
-export default function MainContainer(){
+const Tabs =() =>{
     return(
-        <NavigationContainer>
-            <Tab.Navigator initialRouteName={homeName} screenOptions={({route}) => ({
-                tabBarIcon: ({focused, color, size}) =>{
-                    let iconName;
-                    let rn= route.name;
+        <Tab.Navigator>
 
-                    if (rn === homeName){
-                        iconName = focused ? 'home':'home-outline'
-                    } else if (rn === detailsName){
-                        iconName = focused ? 'list':'list-outline'
-                    }  else if (rn === settingsName){
-                        iconName = focused ? 'settings':'settings-outline'
+        </Tab.Navigator>
+    )
+}
+        
+export default Tabs;
+<NavigationContainer>
+            <Tab.Navigator 
+                tabBarOptions={{
+                    showLabel:false,
+                    style:{
+                        positions:'absolute',
+                        bottom:25,
+                        left:20,
+                        right:20,
+                        elevation:0,
+                        backgroundColor:'white',
+                        borderRadius:15,
+                        height:90,
+                        ...styles.shadow
+
                     }
+                }}
+            >
+                <Tab.Screen name={agenda} component={AgendaScreen} options={{
+                    tabBarIcon:({focused}) =>(
+                       <View>
 
-                    return <Ionicons name={iconName} size={size} color={'red'} />
-                }
-            })}>
-
-                <Tab.Screen name={homeName} component={HomeScreen}/>
+                       </View> 
+                    ),
+                }} />
                 <Tab.Screen name={detailsName} component={DetailsScreen}/>
                 <Tab.Screen name={settingsName} component={SettingsScreen}/>
                 
