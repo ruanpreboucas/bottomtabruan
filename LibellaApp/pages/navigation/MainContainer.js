@@ -8,15 +8,39 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import AgendaScreen from './screens/AgendaScreen'
 import DetailsScreen from './screens/DetailsScreen'
+import PostScreen from './screens/PostScreen'
 import SettingsScreen from './screens/SettingsScreen'
 
 //Screen names
 
 const agenda= "Agenda";
 const detailsName= "Details";
+const postName= "Post";
 const settingsName= "Settings";
 
 const Tab = createBottomTabNavigator();
+
+const CustomTabBarButton =({childrean, onPress}) =>{
+    <TouchableOpacity
+    style={{
+        top:-30,
+        justifyContent:'center',
+        alignItems:'center',
+        ...styles.shadow
+    }}
+    onPress= {onPress}   
+    >
+        <View style={{
+            width:70,
+            height:70,
+            borderRadius:35,
+            backgroundColor:'red',
+        }} >
+            {childrean}
+        </View>
+    </TouchableOpacity>
+};
+
 
 const Tabs =() =>{
     return(
@@ -40,24 +64,47 @@ const Tabs =() =>{
        >
             <Tab.Screen name={agenda} component={AgendaScreen} options={{
                 tabBarIcon:({focused}) =>(
-                   <View>
-                    <Image source={require('../../assets/img/IconAgenda.png')} />
-                    <Text>. </Text>
+                   <View style={{alignItems:'center', justifyContent:'center'}}>
+                    <Image source={require('../../assets/img/IconAgenda.png')}
+                    resizeMode='contain'
+                    style={{
+                        width:50,
+                        height:25,
+                        tintColor: focused ? '#e32f45':'#748c94'
+                    }} />
+                    <Text> </Text>
                    </View> 
                 )
             }} />
-            
+            <Tab.Screen name={postName} component={PostScreen}
+            options={{
+                tabBarIcon:({focused}) =>(
+                  <Image
+                  source={require('../../assets/img/IconP.png')}
+                  />  
+                ),
+            }}
+            >
+
+            </Tab.Screen>
             <Tab.Screen name={detailsName} component={DetailsScreen}
                 options={{
                     tabBarIcon:({focused}) =>(
-                       <View>
-                        <Image source={require('../../assets/img/IconP.png')} />
-                        <Text>. </Text>
+                       <View style={{alignItems:'center', justifyContent:'center'}}>
+                        <Image source={require('../../assets/img/IconP.png')}
+                        resizeMode='contain'
+                        style={{
+                            width:50,
+                            height:25,
+                            tintColor: focused ? '#e32f45':'#748c94'
+                        }}
+                         />
+                        <Text> </Text>
                        </View> 
                     )
                 }}
             />
-            <Tab.Screen name={settingsName} component={SettingsScreen}/>
+          
 
        </Tab.Navigator>
        </NavigationContainer>
