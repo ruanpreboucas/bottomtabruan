@@ -7,14 +7,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 //Screens
 
 import AgendaScreen from './screens/AgendaScreen'
-import DetailsScreen from './screens/DetailsScreen'
+import PacienteScreen from './screens/PacienteScreen'
 import PostScreen from './screens/PostScreen'
 import SettingsScreen from './screens/SettingsScreen'
 
 //Screen names
 
 const agenda= "Agenda";
-const detailsName= "Details";
+const pacienteName= "Pacientes";
 const postName= "Post";
 const settingsName= "Settings";
 
@@ -62,6 +62,7 @@ const Tabs =() =>{
         }
     }}
        >
+            {/* ícone da agenda */}
             <Tab.Screen name={agenda} component={AgendaScreen} options={{
                 tabBarIcon:({focused}) =>(
                    <View style={{alignItems:'center', justifyContent:'center'}}>
@@ -70,24 +71,36 @@ const Tabs =() =>{
                     style={{
                         width:50,
                         height:25,
-                        tintColor: focused ? '#e32f45':'#748c94'
+                        tintColor: focused ? '#6C4CB0':'#748c94'
                     }} />
                     <Text> </Text>
                    </View> 
                 )
             }} />
+
+              {/* Botão post */}
             <Tab.Screen name={postName} component={PostScreen}
             options={{
                 tabBarIcon:({focused}) =>(
                   <Image
-                  source={require('../../assets/img/IconP.png')}
+                  source={require('../../assets/img/iconAdd.png')}
+                  resizeMode='contain'
+                  style={{
+                    width:30,
+                    height:30,
+                    tintColor:'#fff'
+                  }}
                   />  
                 ),
+                tabBarButtom: (props) =>(
+                    <CustomTabBarButton {...props}/>
+                )
             }}
             >
 
             </Tab.Screen>
-            <Tab.Screen name={detailsName} component={DetailsScreen}
+            {/* ícone da tela de pacientes */}
+            <Tab.Screen name={pacienteName} component={PacienteScreen}
                 options={{
                     tabBarIcon:({focused}) =>(
                        <View style={{alignItems:'center', justifyContent:'center'}}>
@@ -96,7 +109,7 @@ const Tabs =() =>{
                         style={{
                             width:50,
                             height:25,
-                            tintColor: focused ? '#e32f45':'#748c94'
+                            tintColor: focused ? '#6C4CB0':'#748c94'
                         }}
                          />
                         <Text> </Text>
